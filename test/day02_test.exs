@@ -6,7 +6,7 @@ defmodule Day02Test do
     assert Day02.score('./data/test/day02.txt') == 15
   end
 
-#  test "Day2 Part2" do
-#    assert Day02.part2('./data/test/day02.txt') == 12
-#  end
+  test "Day2 Part2" do
+    assert Day02.part2('./data/test/day02.txt') == 12
+  end
 end
