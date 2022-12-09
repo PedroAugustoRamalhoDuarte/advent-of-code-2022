@@ -7,6 +7,6 @@ defmodule Day03Test do
   end
 
   test "Day3 Part2" do
-#    assert Day03.part2('./data/test/day03.txt') == 12
+    assert Day03.part2('./data/test/day03.txt') == 70
   end
 end
