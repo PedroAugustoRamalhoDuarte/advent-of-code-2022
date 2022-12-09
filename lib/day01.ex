@@ -15,15 +15,13 @@ defmodule Day01 do
   end
 
   def most_calories(file) do
-    File.read!(file)
-    |> String.split("\n")
+    Utils.file_lines(file)
     |> Enum.reduce({0, 0}, fn line, {max, current} -> calculate(line, max, current) end)
     |> elem(0)
   end
 
   def top_3_calories(file) do
-    File.read!(file)
-    |> String.split("\n")
+    Utils.file_lines(file)
     |> Enum.reduce({[0, 0, 0], 0}, fn line, {max, current} -> calculate(line, max, current) end)
     |> elem(0)
     |> Enum.sum

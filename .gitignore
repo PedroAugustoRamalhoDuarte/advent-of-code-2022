@@ -25,4 +25,6 @@ oac22-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
+# IDEA files
 .idea
+advent-of-code-2022.iml

@@ -73,14 +73,12 @@ defmodule Day02 do
   end
 
   def score(file) do
-    File.read!(file)
-    |> String.split("\n")
+    Utils.file_lines(file)
     |> Enum.reduce(0, fn line, points -> calculate(line, points) end)
   end
 
   def part2(file) do
-    File.read!(file)
-    |> String.split("\n")
+    Utils.file_lines(file)
     |> Enum.reduce(0, fn line, points -> calculate2(line, points) end)
   end
 end
