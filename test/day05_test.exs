@@ -6,7 +6,7 @@ defmodule Day05Test do
     assert Day05.part1('./data/test/day05.txt') == "CMZ"
   end
 
-#  test "Day5 Part2" do
-#    assert Day05.part2('./data/test/day05.txt') == 4
-#  end
+  test "Day5 Part2" do
+    assert Day05.part2('./data/test/day05.txt') == "MCD"
+  end
 end

@@ -29,17 +29,20 @@ defmodule Day05 do
     |> Enum.reduce(list, fn line, list -> add_to_list(parse_line(line), list) end)
   end
 
-  def make_move(move_list, list) do
+  def make_move(move_list, list, part2) do
     [count, from, to] = move_list
     from = from - 1
     to = to - 1
+
+    to_length = length(Enum.at(list, to))
+    insert_at = if part2, do: to_length, else: -1
 
     {from_updated_stack, to_updated_stack} =
       Enum.reduce(0..(count - 1), {Enum.at(list, from), Enum.at(list, to)}, fn _index,
                                                                                {from_stack,
                                                                                 to_stack} ->
         a = List.pop_at(from_stack, -1)
-        b = List.insert_at(to_stack, -1, elem(a, 0))
+        b = List.insert_at(to_stack, insert_at, elem(a, 0))
         {elem(a, 1), b}
       end)
 
@@ -48,7 +51,7 @@ defmodule Day05 do
     |> List.replace_at(to, to_updated_stack)
   end
 
-  def part1(file) do
+  def calculate(file, part2) do
     [initial_state, _, moves] =
       Utils.file_lines(file)
       |> Enum.chunk_by(&(&1 == ""))
@@ -59,14 +62,17 @@ defmodule Day05 do
       String.split(line, ["move", "from", "to"], trim: true)
       |> Enum.map(&String.trim/1)
       |> Enum.map(&Utils.to_i/1)
-      |> make_move(state)
+      |> make_move(state, part2)
     end)
     |> Enum.map(fn stack -> Enum.at(stack, -1) end)
     |> Enum.join()
   end
 
-  #  def part2(file) do
-  #    Utils.file_lines(file)
-  #    |> Enum.reduce(0, fn line, count -> overlap(line, count) end)
-  #  end
+  def part1(file) do
+    calculate(file, false)
+  end
+
+  def part2(file) do
+    calculate(file, true)
+  end
 end
